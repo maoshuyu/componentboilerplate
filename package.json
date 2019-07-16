@@ -2,16 +2,41 @@
   "name": "componentboilerplate",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "module": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "dependencies": {},
   "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/prop-types": "^15.7.1",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.4",
+    "typescript": "^3.5.3",
     "@commitlint/cli": "^8.1.0",
     "husky": "^3.0.0"
   },
+  "peerDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
   "scripts": {
+    "build": "npm run build:typescript && npm run build:js",
+    "build:js": "babel components --out-dir lib --extensions \".tsx,.ts,.jsx,.js\"",
+    "build:typescript": "tsc --emitDeclarationOnly --declaration --outDir lib --isolatedModules false",
+    "check-type": "tsc --noEmit",
+    "check-type:watch": "npm run check-type -- --watch",
     "commitlint": "commitlint -e $GIT_PARAMS",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "sideEffects": [
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/maoshuyu/componentboilerplate.git"
